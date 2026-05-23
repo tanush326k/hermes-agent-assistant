@@ -145,3 +145,6 @@ uvicorn app.main:app --host 0.0.0.0 --port 10000
 *   🛠️ **Tool API Expansion:** Build out real-world tool endpoints (GitHub API, Weather API, Web Scrapers).
 
 ```
+ARCHITECTURE DIAGRAM 
+
+User → FastAPI → Planner → Executor → Tools → Memory → Response
