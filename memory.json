@@ -1,0 +1,23 @@
+[
+  {
+    "task": "search AI agents",
+    "plan": {
+      "task": "search AI agents",
+      "steps": [
+        "Understand the user request",
+        "Break into subtasks",
+        "Select required tools",
+        "Execute steps sequentially",
+        "Generate final answer"
+      ]
+    },
+    "tools_used": [
+      {
+        "tool": "search",
+        "query": "search AI agents",
+        "result": "Found relevant information about: search AI agents"
+      }
+    ],
+    "final_answer": "Processed task: search AI agents"
+  }
+]
