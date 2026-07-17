@@ -1,161 +1,198 @@
+<div align="center">
+
 # 🧠 Hermes Agent Assistant
 
-A modular, lightweight AI agent system built with FastAPI that simulates advanced workflows: **Planner ➔ Executor ➔ Tools ➔ Memory**. It is designed to cleanly demonstrate how modern AI agents break down objectives, plan sequential actions, handle dynamic tool requests, and store context for future reasoning.
+### A Lightweight AI Agent Framework built with FastAPI
+
+Design • Plan • Execute • Remember
+
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Open-success?style=for-the-badge)](https://hermes-agent-tanush.onrender.com)
+![FastAPI](https://img.shields.io/badge/FastAPI-Framework-009688?style=for-the-badge&logo=fastapi)
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python)
+![MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+### 🌐 Live Application
+
+**https://hermes-agent-tanush.onrender.com**
+
+</div>
 
 ---
 
-## 🚀 Quick Links
+# 🚀 What is Hermes?
 
-* **Live Demo:** [hermes-agent-tanush.onrender.com](https://hermes-agent-tanush.onrender.com)
-* **GitHub Repository:** [github.com/tanush326k/hermes-agent-assistant](https://www.google.com/search?q=https://github.com/tanush326k/hermes-agent-assistant)
+Hermes Agent Assistant demonstrates how an AI agent processes a task by separating planning, execution, tool usage, and memory into independent stages.
 
----
-
-## ✨ Features
-
-* **🧠 Task Planner:** A multi-step reasoning engine that slices abstract goals into structured action lists.
-* **⚙️ Execution Engine:** A precise coordinator that runs the planned steps sequentially.
-* **🔧 Tool-Based Architecture:** A decoupled layer for search, logic, and external utility integrations.
-* **💾 Persistent Memory System:** Keeps execution contexts alive across sessions using localized tracking.
-* **🌐 REST API (FastAPI):** High-performance backend endpoints providing lightning-fast interaction.
-* **📄 Auto-Generated Docs:** Full OpenAPI specifications and Swagger playground natively accessible.
+Instead of producing a direct response, Hermes follows a structured workflow similar to modern autonomous AI systems.
 
 ---
 
-## 🏗️ Architecture Diagram
+# ⚡ Core Components
+
+| Component | Responsibility |
+|-----------|----------------|
+| 🧠 Planner | Breaks complex goals into manageable steps |
+| ⚙️ Executor | Executes each planned action sequentially |
+| 🔧 Tools | Performs utility functions and external operations |
+| 💾 Memory | Stores execution history for future context |
+| 🌐 FastAPI | Exposes the agent through REST APIs |
+
+---
+
+# 🧩 Agent Pipeline
+
+```mermaid
+flowchart LR
+
+User --> Planner
+
+Planner --> Executor
+
+Executor --> Tools
+
+Tools --> Memory
+
+Memory --> Response
+
+Response --> User
+```
+
+---
+
+# 🔄 Request Lifecycle
+
+```mermaid
+sequenceDiagram
+
+participant User
+participant API
+participant Planner
+participant Executor
+participant Memory
+
+User->>API: Submit Task
+API->>Planner: Generate Plan
+Planner->>Executor: Send Steps
+Executor->>Memory: Save Progress
+Memory-->>API: Return Context
+API-->>User: Final Response
+```
+
+---
+
+# 📡 API Endpoints
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/` | Health check |
+| POST | `/run` | Execute an agent task |
+| GET | `/docs` | Interactive Swagger documentation |
+
+---
+
+# 🛠 Tech Stack
+
+| Layer | Technology |
+|--------|------------|
+| Backend | FastAPI |
+| Language | Python |
+| Documentation | Swagger / OpenAPI |
+| Storage | Local Memory |
+| Deployment | Render |
+
+---
+
+# 📂 Project Structure
 
 ```text
-        ┌──────────────┐
-        │  User Input  │
-        └──────┬───────┘
-               │
-               ▼
-        ┌─────────────────┐
-        │  FastAPI Layer  │
-        └──────┬──────────┘
-               │
-               ▼
-        ┌───────────────────┐
-        │      Planner      │
-        │  (Task Breakdown) │
-        └──────┬────────────┘
-               │
-               ▼
-        ┌───────────────────┐
-        │     Executor      │
-        │  (Step Execution) │
-        └──────┬────────────┘
-               │
-               ▼
-        ┌───────────────────┐
-        │    Tools Layer    │
-        │ (Utilities/Logic) │
-        └──────┬────────────┘
-               │
-               ▼
-        ┌───────────────────┐
-        │   Memory System   │
-        │ (Persistent Store)│
-        └──────┬────────────┘
-               │
-               ▼
-         Final Response
+hermes-agent-assistant/
 
+├── app/
+│   ├── planner.py
+│   ├── executor.py
+│   ├── tools.py
+│   ├── memory.py
+│   └── main.py
+│
+├── requirements.txt
+├── README.md
+└── LICENSE
 ```
 
 ---
 
-## 📡 API Endpoints
-
-### 🟢 Root
-
-* **Method:** `GET`
-* **Path:** `/`
-* **Purpose:** Verification heartbeat check.
-
-### 🧠 Run Agent
-
-* **Method:** `POST`
-* **Path:** `/run`
-* **Query Parameter:** `task=your task here`
-* **Example Call:** `/run?task=analyze AI market trends`
-
-### 📚 Interactive Docs
-
-* **Path:** `/docs`
-* **Purpose:** Fully active Swagger UI wrapper to test requests directly out of the browser.
-
----
-
-## 🧠 How It Works
-
-1. **Planner:** Takes raw incoming user requests and translates them into explicit steps.
-2. **Executor:** Evaluates the steps one after the other in correct chronological order.
-3. **Tools:** Act as functional extensions, handling specialized computations or lookups.
-4. **Memory:** Encapsulates the results securely so successive logic runs can build off of them.
-
----
-
-## ⚙️ Installation & Local Setup
-
-### 1. Environment Setup
+# ▶️ Run Locally
 
 ```bash
-# Clone the repository
 git clone https://github.com/tanush326k/hermes-agent-assistant.git
+
 cd hermes-agent-assistant
 
-# Initialize a clean virtual environment
 python -m venv venv
 
-# Activate the virtual environment
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
-
-```
-
-### 2. Dependency Management
-
-```bash
-# Install required production packages
 pip install -r requirements.txt
 
-```
-
-### 3. Execution
-
-```bash
-# Run the local development server with live reload enabled
 uvicorn app.main:app --reload
-
 ```
 
-Once spun up, navigate your environment to: **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
+Open:
+
+**http://127.0.0.1:8000**
+
+Swagger UI:
+
+**http://127.0.0.1:8000/docs**
 
 ---
 
-## 🔮 Future Roadmap & Upgrades
+# 🎯 Why This Project?
 
-* **LLM Integration:** Layering foundational model logic (Ollama, OpenAI, or Anthropic API hooks) directly over our routing.
-* **Vector Memory Store:** Transitioning base serialization schemas over to semantic data retrieval (FAISS, ChromaDB).
-* **Multi-Agent Coordination:** Orchestrating separate standalone workers interacting via a specialized internal communication mesh.
-* **Tool Ecosystem Expansion:** Injecting robust functional engines including direct calculations, code runners, and web scraping utilities.
+Hermes is designed to demonstrate the fundamental architecture behind AI agents.
+
+It showcases:
+
+- Structured reasoning
+- Sequential task execution
+- Modular agent design
+- Memory-driven workflows
+- Clean REST API architecture
 
 ---
 
-## 🔥 Pro Features (Optimization Submissions)
+# 🔮 Future Improvements
 
-To take this framework to a production-grade enterprise setup, implement the following strategies:
+- 🤖 LLM Integration
+- 🧠 Vector Memory
+- 🌍 Web Search Tool
+- 📂 File Management Tools
+- 👥 Multi-Agent Collaboration
+- ⚡ Streaming Responses
+- 📊 Agent Execution Visualization
 
-* **⚡ Streaming Execution Mode:** Refactor the executor pipeline using Server-Sent Events (SSE) to emit real-time agent reasoning directly to client UIs.
-* **🛠️ Deep Tool Expansion:** Provide native execution frameworks for an isolated `Calculator Tool`, a robust `Web Search API Tool`, and a local sandboxed `File Writer Tool`.
-* **🗄️ Memory Upgrades:** Replace the JSON flatfile structure with a transactional local **SQLite database**, or migrate directly to an advanced **FAISS Vector Store** to handle complex context searches.
-* **🤝 Multi-Agent Architecture:** Explode the core executor cycle into individual atomic agents:
-* *Planner Agent:* Designs the master roadmap strategy.
-* *Executor Agent:* Focused entirely on specialized tools calls.
-* *Critic Agent:* Inspects outcomes and validates results against criteria.
+---
 
+# 🤝 Contributing
 
-* **💡 Explainable AI Mode:** Expose complete internal tracing structures inside your standard API response body, returning metadata for each planning pass and calculation adjustment.
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+<div align="center">
+
+### 💡 Build once. Plan smart. Execute better.
+
+⭐ **If you found this project useful, consider giving it a star!**
+
+</div>
+````
